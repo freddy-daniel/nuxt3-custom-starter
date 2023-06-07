@@ -16,9 +16,7 @@ export const useAuthStore = defineStore('auth-store', {
   actions: {
     async login (credentials: LoginInput) {
       const { $api } = useNuxtApp();
-      const loginResponse: LoginResponse | any = await $api.auth.login(<LoginInput>{
-        ...credentials
-      });
+      const loginResponse: LoginResponse | any = await $api.auth.login(credentials);
       return loginResponse;
     },
 
