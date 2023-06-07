@@ -15,8 +15,9 @@ class HttpFactory {
     * method - GET, POST, PUT
     * URL
   **/
-  async call<T> (method: string, url: string, data?: object, extras = {}): Promise<T> {
-    const $res: T = await this.$fetch(url, { method, body: data, ...extras });
+  async call<T> (method: string, url: string, body?: object | null, extras = {}): Promise<T> {
+    const fetchOptions = { method, ...(body ? { body } : {}), ...extras };
+    const $res: T = await this.$fetch(url, fetchOptions);
     return $res;
   }
 }
